@@ -1,2 +1,3 @@
 # API_BDD
-Esta API la hice con MySQL lol
+No olvides que debes tener los paquetes instalados en tu sistema
+Al igual que el gestor de base de datos MySQL
