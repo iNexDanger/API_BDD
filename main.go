@@ -23,7 +23,7 @@ func main() {
 	}
 	// Define routes
 	router := mux.NewRouter()
-	setupRoutesForPersons(router)
+	setupRoutesForPeople(router)
 	// .. here you can define more routes
 	// ...
 	// for example setupRoutesForGenres(router)
