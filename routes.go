@@ -7,14 +7,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func setupRoutesForPersons(router *mux.Router) {
+func setupRoutesForPeople(router *mux.Router) {
 	// First enable CORS. If you don't need cors, comment the next line
 	enableCORS(router)
 
 	router.HandleFunc("/person", func(w http.ResponseWriter, r *http.Request) {
-		persons, err := getPersons()
+		people, err := getPeople()
 		if err == nil {
-			respondWithSuccess(persons, w)
+			respondWithSuccess(people, w)
 		} else {
 			respondWithError(err, w)
 		}
@@ -27,11 +27,11 @@ func setupRoutesForPersons(router *mux.Router) {
 			// We return, so we stop the function flow
 			return
 		}
-		videogame, err := getPersonById(id)
+		person, err := getPersonById(id)
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			respondWithSuccess(videogame, w)
+			respondWithSuccess(person, w)
 		}
 	}).Methods(http.MethodGet)
 
@@ -58,7 +58,7 @@ func setupRoutesForPersons(router *mux.Router) {
 		if err != nil {
 			respondWithError(err, w)
 		} else {
-			err := updatePersons(person)
+			err := updatePeople(person)
 			if err != nil {
 				respondWithError(err, w)
 			} else {
