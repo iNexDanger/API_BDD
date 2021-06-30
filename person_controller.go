@@ -17,7 +17,7 @@ func deletePerson(id int64) error {
 	_, err = bd.Exec("DELETE FROM Personas WHERE id = ?", id)
 	return err
 }
-func updatePersons(person Person) error {
+func updatePeople(person Person) error {
 	bd, err := getDB()
 	if err != nil {
 		return err
@@ -26,17 +26,17 @@ func updatePersons(person Person) error {
 	return err
 }
 
-func getPersons() ([]Person, error) {
+func getPeople() ([]Person, error) {
 	//Declare an array because if there's error, we return it empty
-	persons := []Person{}
+	people := []Person{}
 	bd, err := getDB()
 	if err != nil {
-		return persons, err
+		return people, err
 	}
 	// Get rows so we can iterate them
 	rows, err := bd.Query("SELECT ID, Name, DNI FROM Personas")
 	if err != nil {
-		return persons, err
+		return people, err
 	}
 	// Iterate rows...
 	for rows.Next() {
@@ -44,12 +44,12 @@ func getPersons() ([]Person, error) {
 		var person Person
 		err = rows.Scan(&person.ID, &person.Name, &person.DNI)
 		if err != nil {
-			return persons, err
+			return people, err
 		}
 		// and append it to the array
-		persons = append(persons, person)
+		people = append(people, person)
 	}
-	return persons, nil
+	return people, nil
 }
 func getPersonById(id int64) (Person, error) {
 	var person Person
